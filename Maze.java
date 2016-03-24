@@ -80,7 +80,7 @@ public class Maze {
 		// This algorithm should look familiar!
 		int[] perm = new int[n];
 		for (int k=0; k<n; ++k) perm[k] = k;
-			for (int k=n; k>0; --k) {
+		for (int k=n; k>0; --k) {
 			int rand = r.nextInt(k);
 			int t = perm[rand];  perm[rand] = perm[k-1];  perm[k-1] = t;
 		}
@@ -88,8 +88,35 @@ public class Maze {
 	}
    
 	public String toString() {
-		// FOR YOU TO FILL IN.  MUST FOLLOW CORRECT FORMAT.
-		return null;
+		String[] maze = new String[rows + 1];
+		for (int i = 0; i < maze.length; i++) {
+			maze[i] = "";
+		}
+		String add = null;
+		String a = "";
+		
+		//Converts maze to string for all rows except the last
+		for (int i = 1; i < rows; i++) {
+			for (int j = 1; j < cols; j++){
+				add = String.format("%2d ", m[i][j]);
+				maze[i] += add;
+			}
+			//This is separate to remove spaces at the end of the row
+			maze[i] += String.format("%2d", m[i][cols]);
+			maze[i] += "\n";
+			a += maze[i];
+		}
+		
+		//Converts the last row to string (separate loop
+		//in order to remove last new line character
+		for (int j = 1; j < cols; j++){
+			add = String.format("%2d ", m[rows][j]);
+			maze[rows] += add;
+		}
+		maze[rows] += String.format("%2d", m[rows][cols]);
+		a += maze[rows];
+		
+		return a;
 	}
 
 	public void solveMaze() {
@@ -106,12 +133,13 @@ public class Maze {
 		int col = Integer.parseInt( args[1] );
 		Maze maz = new Maze( row, col, 9999 );
 		System.out.print( maz );
-		System.out.println( "Solutions = "+maz.numSolutions() );
+		/*System.out.println( "Solutions = "+maz.numSolutions() );
 		maz.knockDown( (row+col)/4 );
 		System.out.print( maz );
 		System.out.println( "Solutions = "+maz.numSolutions() );
 		maz = new Maze( row, col, 9999 );  // creates the same maze anew.
 		maz.solveMaze();
 		System.out.print( maz );
+		*/
 	}
 }
