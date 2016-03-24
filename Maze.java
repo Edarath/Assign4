@@ -36,11 +36,11 @@ public class Maze {
 		for (int r=1; r<=nr; ++r )
 			for (int c=1; c<=nc; ++c )
 				m[r][c] = 15;
-			for (int r=0; r<nr+2; ++r )
-				m[r][0] = m[r][nc+1] = 16;
-			for (int c=0; c<nc+2; ++c )
-				m[0][c] = m[nr+1][c] = 16;
-			Create( nr/2+1, nc/2+1, 0 );
+		for (int r=0; r<nr+2; ++r )
+			m[r][0] = m[r][nc+1] = 16;
+		for (int c=0; c<nc+2; ++c )
+			m[0][c] = m[nr+1][c] = 16;
+		Create( nr/2+1, nc/2+1, 0 );
 	}
 
 	// Wall in direction p?  
